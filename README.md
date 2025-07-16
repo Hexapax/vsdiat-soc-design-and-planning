@@ -9,10 +9,14 @@ Follow through of a VLSI SoC design and planning workshop organized by VSD
 * **Foundry IPs (Intellectual Property)**: Pre-designed blocks that require a certain level of intelligence or expertise to build from scratch.
 * **Macros**: Components built from pure digital logic.
 
+![A map of standard chip components](./Images/chipcomponents.png)
+
 ### RISC-V
 * A **free and extensible blueprint** that anyone can use to design processors.
 * It's an **Instruction Set Architecture (ISA)**, which defines how software communicates with hardware.
 * The ISA's role is to parse information from a high-level programming language (like C) into a machine language program (binary).
+
+![Instruction Set Architecture](./Images/isariscv.png)
 
 ### Software to Hardware Flow
 The process follows this general path:
@@ -59,6 +63,8 @@ The process follows this general path:
     * **Timing Verification**:
         * **Static Timing Analysis (STA)**: Checks that the chip meets its performance and speed requirements.
 
+![A flowchart from RTL to DGSII](./Images/rtltogdsiiflow.png)
+
 ---
 
 ## OpenLANE Tool Overview
@@ -74,6 +80,9 @@ The process follows this general path:
 2.  **Design Exploration**: Shows performance metrics for different configurations and includes regression testing.
 3.  **Design For Test (DFT)**: Inserts logic to make the chip testable after manufacturing. Includes scan chain insertion, Automatic Test Pattern Generation (ATPG), and fault simulation.
 4.  **Physical Implementation (PnR)**: The automated Place and Route process, handled by **OpenROAD**.
+
+![A flowchart of the openlane design process](./Images/openlaneflow.png)
+
 
 ### Important Concepts in Physical Implementation
 * **Logic Equivalence Check (LEC)**: Verifies that the circuit's function has not changed after the netlist is modified (e.g., during optimization or CTS).
