@@ -81,9 +81,11 @@ The process follows this general path:
 
 ---
 
-## Getting Started with OpenLANE Commands
+## Getting Started with OpenLANE
 
 **Documentation:** [openlane.readthedocs.io](https://openlane.readthedocs.io/en/latest/usage/index.html)
+
+
 
 * **Set Up Interactive Mode:**
     ```bash
