@@ -22,6 +22,8 @@ Walk through of a VLSI SoC design and planning workshop organized by VSD
 The process follows this general path:
 **Application Software** → **System Software** (OS → Compiler → Assembler) → **Binary** → **Hardware**
 
+![](./Images/codeflow.png)
+
 ---
 
 ## SoC Design with OpenLane
@@ -90,11 +92,11 @@ The process follows this general path:
 
 ---
 
-## Getting Started with OpenLANE
+## Getting Started with OpenLANE with picorv32a
 
 **Documentation:** [openlane.readthedocs.io](https://openlane.readthedocs.io/en/latest/usage/index.html)
 
-
+![](./Images/startingopenlane.png)
 
 * **Set Up Interactive Mode:**
     ```bash
@@ -108,3 +110,23 @@ The process follows this general path:
     ```tcl
     prep -design <design_name>
     ```
+* **Run Synthesis:**
+    ```tcl
+    run_synthesis
+    ```
+
+### Now I go check the picorv32a config file
+
+![](./Images/checkingpicorv32aconfig.png)
+
+### Then to calculate the flop ratio using the synthesis reports
+
+![](./Images/synthstatcells.png)
+![](./Images/synthstatdff.png)
+
+We calculate the Flop Ratio and DFF % from the synthesis report file
+
+Flop Ratio = 1613/17353 = 0.09295222728
+
+DFF % = 0.09295222728 * 100 = 9.295222728 %
+
