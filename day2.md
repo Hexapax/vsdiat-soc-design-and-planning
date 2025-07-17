@@ -22,6 +22,17 @@
 
 ![](./Images/powerplanning.png)
 
+### The Standard Cell Library
+
+* Standard Cell Library: A collection of pre-designed and pre-characterized logic gates.
+    * cell library acts as a catalog of building blocks that design tools use to construct a chip.
+
+* Cell Characteristics: Key characteristics include:
+    * Size: The physical area the cell occupies.
+    * Delay: The time it takes for a signal to pass through.
+    * Voltage: The power required for the cell to operate.
+    * Inputs/Outputs: The locations of its connection points.
+
 ## Floorplanning
 
 ## After running synthesis we can use the following command to create a floorplan of picorv32a
@@ -80,4 +91,3 @@
 ## With x and Shift+x we can expand the cells and see their contents
 
 ![](./Images/placementcellxray.png)
-
