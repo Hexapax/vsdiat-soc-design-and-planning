@@ -34,31 +34,31 @@ git clone https://github.com/nickson-jose/vsdstdcelldesign.git
 
 ### Copy our tech file into the new repository folder and then run magic
 
-![](Images\copytechfile.png)
+![](./Images/copytechfile.png)
 
-![](Images\runmagicinrepo.png)
+![](./Images/runmagicinrepo.png)
 
-![](Images\invertermagic.png)
+![](./Images/invertermagic.png)
 
 ### We can select with s and type what in the terminal to see what something is
 
-![](Images\inverterwhat.png)
+![](./Images/inverterwhat.png)
 
 ### Then run the following commands to extract
 
-![](Images\magicextract.png)
+![](./Images/magicextract.png)
 
 ### Now use Vim to open the new .spice file and make the changes
 
-![](Images\spicefilebefore.png)
-![](Images\spicefileafter.png)
+![](./Images/spicefilebefore.png)
+![](./Images/spicefileafter.png)
 
 *Also change the scale at the top from 10m to 10000u
 
 ### Run ngspice and check the graph to see the inverter is working
 
-![](Images\runspiceinverter.png)
-![](Images\spicegraph.png)
+![](./Images/runspiceinverter.png)
+![](./Images/spicegraph.png)
 
 
 ## DRC tests
@@ -88,27 +88,27 @@ gvim .magicrc
 magic -d XR &
 ```
 
-![](Images\drcinstall1.png)
-![](Images\drcinstall2.png)
+![](./Images/drcinstall1.png)
+![](./Images/drcinstall2.png)
 
 ### We will make a simple DRC implementation in the metal 3 file
 
-![](Images\drcmetal3.png)
+![](./Images/drcmetal3.png)
 
 ### Here is the rule we need to implement
 More can be found at: https://skywater-pdk.readthedocs.io/en/main/rules/periphery.html
 
 
-![](Images\poly9rules.png)
+![](./Images/poly9rules.png)
 
 ### Now make some changes in the skywater130A.tech file in the same folder
 
-![](Images\poly9fix.png)
+![](./Images/poly9fix.png)
 
 ### The next and final fix is more complicated but is made in the same way. This time in the nwell rules
 
-![](Images\nwellfix1.png)
-![](Images\nwellfix2.png)
-![](Images\nwellfix3.png)
+![](./Images/nwellfix1.png)
+![](./Images/nwellfix2.png)
+![](./Images/nwellfix3.png)
 
 Now when running drc check there is no issue with the nwell

@@ -51,7 +51,7 @@ The process follows this general path:
     * Implements the physical wiring (interconnects) between all the cells using the available metal layers.
     * In the Skywater 130nm PDK, there are 6 metal layers: the lowest is for local interconnects (titanium nitride) and the other five are aluminum.
     * The process defines vias to connect different layers, forming a huge routing grid.
-    * Done in two stages: **Global Routing** (creates quick routing guides) and **Detailed Routing** (implements the actual wires).
+    * Done in two stages: **Global Routing** (creates quick routing guides) and **Detailed Routing** (Implements the actual wires).
 
 6.  **Sign Off → GDSII**
     * This is the final verification stage before the design is sent for manufacturing. The final layout file format is **GDSII**.
