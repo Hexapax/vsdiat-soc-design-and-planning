@@ -33,3 +33,91 @@
 ### You can see the port information is in the .lef file
 
 ![](./Images/openleffile.png)
+
+### Now we copy the .lef file to src
+
+![](./Images/copylef.png)
+
+### Then inside the libs folder in the vsdstdcelldesigns also copy the lib files
+
+```
+# Copy lef file
+cp sky130_vsdinv.lef ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/
+
+# List and check whether it's copied
+ls ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/
+
+# Copy lib files
+cp libs/sky130_fd_sc_hd__* ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/
+
+# List and check whether it's copied
+ls ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/
+```
+
+
+### Next we need to edit config.tcl
+
+![](./Images/editconfig.png)
+
+### Paste in these lines
+
+```
+set ::env(LIB_SYNTH) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__typical.lib"
+set ::env(LIB_FASTEST) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__fast.lib"
+set ::env(LIB_SLOWEST) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__slow.lib"
+set ::env(LIB_TYPICAL) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__typical.lib"
+
+set ::env(EXTRA_LEFS) [glob $::env(OPENLANE_ROOT)/designs/$::env(DESIGN_NAME)/src/*.lef]
+```
+
+![](./Images/newconfig.png)
+
+### Now we need to run openlane to see our new inverter in the picorv32a
+
+![](./Images/runningopenlane.png)
+
+### paste in a few lines after prepping to run picorv32a with the inverter and then run synthesis
+
+```
+# Adiitional commands to include newly added lef to openlane flow
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+```
+
+![](./Images/editedpicorv32arun.png)
+
+### After running the synthesis we see that there is an issue with the slack and take note of these numbers and the size
+
+![](./Images/slackissue.png)
+![](./Images/picorvsizebefore.png)
+
+### Now run these commands to view and edit the synthesis settings
+
+```
+# Command to display current value of variable SYNTH_STRATEGY
+echo $::env(SYNTH_STRATEGY)
+
+# Command to set new value for SYNTH_STRATEGY
+set ::env(SYNTH_STRATEGY) "DELAY 3"
+
+# Command to display current value of variable SYNTH_BUFFERING to check whether it's enabled
+echo $::env(SYNTH_BUFFERING)
+
+# Command to display current value of variable SYNTH_SIZING
+echo $::env(SYNTH_SIZING)
+
+# Command to set new value for SYNTH_SIZING
+set ::env(SYNTH_SIZING) 1
+
+# Command to display current value of variable SYNTH_DRIVING_CELL to check whether it's the proper cell or not
+echo $::env(SYNTH_DRIVING_CELL)
+```
+
+### Run synthesis again
+
+![](./Images/slackfix.png)
+
+### see that our slack issue has been resolved and our size has increased
+
+![](./Images/reducedslack.png)
+![](./Images/picorvsizeafter.png)
