@@ -72,6 +72,8 @@ set ::env(EXTRA_LEFS) [glob $::env(OPENLANE_ROOT)/designs/$::env(DESIGN_NAME)/sr
 
 ![](./Images/newconfig.png)
 
+## Opening the new inverter in picorv32a
+
 ### Now we need to run openlane to see our new inverter in the picorv32a
 
 ![](./Images/runningopenlane.png)
@@ -121,3 +123,7 @@ echo $::env(SYNTH_DRIVING_CELL)
 
 ![](./Images/reducedslack.png)
 ![](./Images/picorvsizeafter.png)
+
+### When we run magic for the placement we can see the new cell in our picorv32a
+
+![](./Images/magicvsdinv.png)
