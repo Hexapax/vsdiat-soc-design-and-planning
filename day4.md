@@ -127,3 +127,85 @@ echo $::env(SYNTH_DRIVING_CELL)
 ### When we run magic for the placement we can see the new cell in our picorv32a
 
 ![](./Images/magicvsdinv.png)
+
+## Timing Analysis
+
+### We will perform synthesis with the new lef
+
+```
+prep -design picorv32a
+
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+
+set ::env(SYNTH_SIZING) 1
+
+run_synthesis
+```
+
+### Create a new pre_sta.conf for STA analysis inside our main openlane directory
+
+![](./Images/pre_staconf.png)
+
+### also make a base.sdc file in picorv32a/src based on the base.sdc in openlane/scripts
+
+![](./Images/basesdc.png)
+
+### now from inside the openlane directory we will run sta
+
+```
+sta pre_sta.conf
+```
+
+![](./Images/runsta.png)
+
+### Notice our sta shows lots of slack so we will start to optimize it
+
+![](./Images/staslack.png)
+
+### We can locate OR gates driving more fanouts and not enough strength and replace them with ones with higher strength
+
+![](./Images/staissueexample.png)
+
+### these commands replace our weak OR gate and perform analysis
+
+```
+# Reports all the connections to a net
+report_net -connections _11672_
+
+# Checking command syntax
+help replace_cell
+
+# Replacing cell
+replace_cell _14513_ sky130_fd_sc_hd__or3_4
+
+# Generating custom timing report
+report_checks -fields {net cap slew input_pins} -digits 4
+```
+
+### And our slack has been slightly reduced
+
+![](./Images/stalessslack.png)
+
+### Now repeat this, looking for gates that cause an issue until you have significantly reduced slack
+### Then replace your old netlist with the new one that has been updated. Make a copy of the synthesis.v file
+
+```
+cp picorv32a.synthesis.v picorv32a.synthesis_old.v
+```
+
+![](./Images/copysynthfile.png)
+
+### Now back inside your STA run this command to write a new verilog file (replace the run name with your own)
+
+```
+write_verilog /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/27-07_00-26/results/synthesis/picorv32a.synthesis.v
+```
+
+### Now after running placement we can run the clock timing synthesis (CTS)
+
+```
+run_cts
+```
+
+![](./Images/runcts.png)
