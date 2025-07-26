@@ -212,7 +212,7 @@ cp picorv32a.synthesis.v picorv32a.synthesis_old.v
 ### Now back inside your STA run this command to write a new verilog file (replace the run name with your own)
 
 ```
-write_verilog /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/27-07_00-26/results/synthesis/picorv32a.synthesis.v
+write_verilog /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/24-07_00-26/results/synthesis/picorv32a.synthesis.v
 ```
 
 ### Now after running placement we can run the clock timing synthesis (CTS)
